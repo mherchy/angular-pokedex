@@ -15,5 +15,9 @@ export class PokemonServiceService {
     return POKEMON.data;
   }
 
+  getPokemon(id: number): Pokemon {
+    return POKEMON.data.find( p => p.id === id);
+  }
+
 
 }
