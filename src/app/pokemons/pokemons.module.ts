@@ -8,7 +8,9 @@ import {
   MatListModule,
   MatCardModule,
   MatGridListModule,
-  MatChipsModule
+  MatChipsModule,
+  MatButtonModule,
+  MatIconModule
 } from '@angular/material';
 
 
@@ -25,7 +27,9 @@ import {
     HttpClientModule,
     MatCardModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class PokemonsModule { }

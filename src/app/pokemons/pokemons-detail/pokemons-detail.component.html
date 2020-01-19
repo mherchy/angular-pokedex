@@ -1,12 +1,18 @@
 <mat-card *ngIf="pokemon">
-  <mat-grid-list [cols]="2" [rowHeight]="'20vh'" >
+  <mat-grid-list [cols]="2" [rowHeight]="'20vh'">
     <mat-grid-tile [colspan]="1" [rowspan]="3">
       <img matListAvatar [src]="artworkUrl" class="pokemon-img" alt="">
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="3">
       <mat-list>
         <mat-list-item>No. {{pokemon.id | number:'3.0-0'}}</mat-list-item>
-        <mat-list-item>{{pokemon.name}}</mat-list-item>
+        <mat-list-item>
+          {{pokemon.name}}
+          <audio [src]="soundUrl" #pokemonSound autoplay></audio>
+          <button mat-icon-button (click)="pokemonSound.play()">
+            <mat-icon>play_circle_outline</mat-icon>
+          </button>
+        </mat-list-item>
         <mat-list-item>
           <mat-chip-list>
             <mat-chip *ngFor="let type of pokemon.types">{{type}}</mat-chip>
