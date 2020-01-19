@@ -1,4 +1,9 @@
 <mat-card *ngIf="pokemon">
+  <mat-card-header>
+    <button mat-icon-button (click)="location.back()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </mat-card-header>
   <mat-grid-list [cols]="2" [rowHeight]="'20vh'">
     <mat-grid-tile [colspan]="1" [rowspan]="3">
       <img matListAvatar [src]="artworkUrl" class="pokemon-img" alt="">

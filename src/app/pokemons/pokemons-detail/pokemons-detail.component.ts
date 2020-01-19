@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Pokemon} from '../models/pokemon';
 import {ActivatedRoute} from '@angular/router';
 import {PokemonServiceService} from '../pokemon-service.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-pokemons-detail',
@@ -14,7 +15,8 @@ export class PokemonsDetailComponent implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
-    private pokemonService: PokemonServiceService
+    private pokemonService: PokemonServiceService,
+    public location: Location
   ) {
   }
 
