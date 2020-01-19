@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PokemonServiceService} from '../pokemon-service.service';
-import {Pokemon} from '../models/pokemon';
+import {PokemonListItem} from '../models/pokemon-list';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -9,14 +9,22 @@ import {Pokemon} from '../models/pokemon';
 })
 export class PokemonListComponent implements OnInit {
 
-  public pokemons: Pokemon[];
+  public pokemons: PokemonListItem[];
 
   constructor(
     private pokemonService: PokemonServiceService
   ) { }
 
   ngOnInit() {
-    this.pokemons = this.pokemonService.getPokemons();
+    this.getPokemonList();
+  }
+
+  getPokemonList() {
+    this.pokemonService.getPokemons().subscribe(o => this.pokemons = o.data);
+  }
+
+  getSpriteUrl(id: number) {
+    return 'assets/img/sprites/' + id + '.png';
   }
 
 }

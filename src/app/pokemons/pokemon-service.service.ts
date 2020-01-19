@@ -1,22 +1,27 @@
-import { Injectable } from '@angular/core';
-import POKEMON from './fixture';
+import {Injectable} from '@angular/core';
 import {Pokemon} from './models/pokemon';
+import {PokemonList} from './models/pokemon-list';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonServiceService {
 
-  // 'https://www.getpostman.com/collections/a741976ce21e3e2b69fc';
+  private url = 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io/pokemons';
 
-  constructor() { }
-
-  getPokemons(): Pokemon[] {
-    return POKEMON.data;
+  constructor(
+    private http: HttpClient
+  ) {
   }
 
-  getPokemon(id: number): Pokemon {
-    return POKEMON.data.find( p => p.id === id);
+  getPokemons(p?, n?): Observable<PokemonList> {
+    return this.http.get<PokemonList>(this.url);
+  }
+
+  getPokemon(id: number): Observable<Pokemon> {
+    return this.http.get<Pokemon>(this.url + `/${id}`);
   }
 
 

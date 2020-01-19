@@ -1,0 +1,25 @@
+<mat-card *ngIf="pokemon">
+  <mat-grid-list [cols]="2" [rowHeight]="'20vh'" >
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
+      <img matListAvatar [src]="artworkUrl" class="pokemon-img" alt="">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
+      <mat-list>
+        <mat-list-item>No. {{pokemon.id | number:'3.0-0'}}</mat-list-item>
+        <mat-list-item>{{pokemon.name}}</mat-list-item>
+        <mat-list-item>
+          <mat-chip-list>
+            <mat-chip *ngFor="let type of pokemon.types">{{type}}</mat-chip>
+          </mat-chip-list>
+        </mat-list-item>
+        <mat-list-item>Taille: {{pokemon.height | number:'0.1-1'}} m</mat-list-item>
+        <mat-list-item>Poids: {{pokemon.weight | number:'0.1-1'}} kg</mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      {{pokemon.description}}
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+
+

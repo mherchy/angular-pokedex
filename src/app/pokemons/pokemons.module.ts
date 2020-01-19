@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import {MatListModule} from '@angular/material/list';
 import { PokemonsDetailComponent } from './pokemons-detail/pokemons-detail.component';
 import { AppRoutingModule } from '../app-routing.module';
+import {HttpClientModule, HttpRequest} from '@angular/common/http';
+import {
+  MatListModule,
+  MatCardModule,
+  MatGridListModule,
+  MatChipsModule
+} from '@angular/material';
 
 
 
@@ -15,7 +21,11 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [
     CommonModule,
     MatListModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    MatCardModule,
+    MatGridListModule,
+    MatChipsModule
   ]
 })
 export class PokemonsModule { }

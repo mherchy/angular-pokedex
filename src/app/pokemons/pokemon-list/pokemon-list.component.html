@@ -1,7 +1,7 @@
-<mat-list>
-  <a routerLink="pokemon/{{pokemon.id}}" *ngFor="let pokemon of pokemons">
-    <mat-list-item >
-      <img matListAvatar src="{{ 'assets/img/sprites/' + pokemon.id + '.png' }}" alt="">
+<mat-list class="pokemon-list">
+  <a routerLink="/pokemon/{{pokemon.id}}" *ngFor="let pokemon of pokemons">
+    <mat-list-item>
+      <img matListAvatar [src]="getSpriteUrl(pokemon.id)" alt="">
       <h3 matLine> {{pokemon.name}} </h3>
     </mat-list-item>
   </a>

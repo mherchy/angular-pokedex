@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PokemonsModule } from './pokemons/pokemons.module';
 
+import {
+  MatListModule,
+  MatCardModule,
+  MatGridListModule,
+  MatChipsModule
+} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +21,8 @@ import { PokemonsModule } from './pokemons/pokemons.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    PokemonsModule
+    PokemonsModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
