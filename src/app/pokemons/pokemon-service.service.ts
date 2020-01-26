@@ -16,12 +16,14 @@ export class PokemonServiceService {
   ) {
   }
 
-  getPokemons(offset?, limit?): Observable<PokemonList> {
+  getPokemons(offset, limit, search?: string): Observable<PokemonList> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       params: new HttpParams({fromObject: {offset, limit}})
     };
-    const u = 'https://pokeapi.co/api/v2/';
+    if (search) {
+      httpOptions.params = httpOptions.params.append('search', search);
+    }
     return this.http.get<PokemonList>(this.url, httpOptions);
   }
 

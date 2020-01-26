@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PokemonServiceService} from '../pokemon-service.service';
 import {PokemonListItem} from '../models/pokemon-list';
 import {IInfiniteScrollEvent} from 'ngx-infinite-scroll';
@@ -10,23 +10,39 @@ import {IInfiniteScrollEvent} from 'ngx-infinite-scroll';
 })
 export class PokemonListComponent implements OnInit {
 
-  public pokemons: PokemonListItem[] = [];
+  public cache: PokemonListItem[] = [];
+  private displayed: PokemonListItem[] = [];
+
   private nbPerRequest = 10;
   private nbItems = 0;
   private scrollAvailable = true;
 
+  public searchKeyWord = '';
+
   constructor(
     private pokemonService: PokemonServiceService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.getNextPokemons();
   }
 
+  displayCache() {
+    this.displayed = this.cache;
+  }
+
   getNextPokemons() {
     this.pokemonService.getPokemons(this.nbItems, this.nbPerRequest).subscribe(o => {
-      this.pokemons = this.pokemons.concat(o.data);
+      this.cache = this.cache.concat(o.data);
       this.nbItems += this.nbPerRequest;
+      this.displayCache();
+    });
+  }
+
+  searchPokemons(search) {
+    this.pokemonService.getPokemons(0, 10, search).subscribe(o => {
+      this.displayed = o.data;
     });
   }
 
@@ -39,6 +55,15 @@ export class PokemonListComponent implements OnInit {
       this.scrollAvailable = false;
       this.getNextPokemons();
       this.scrollAvailable = true;
+    }
+  }
+
+  inputSearchChanges() {
+    if (this.searchKeyWord) {
+      console.log(this.searchKeyWord);
+      this.searchPokemons(this.searchKeyWord);
+    } else {
+      this.displayCache();
     }
   }
 }

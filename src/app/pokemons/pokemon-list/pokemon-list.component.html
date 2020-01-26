@@ -1,8 +1,20 @@
 <mat-list class="pokemon-list" infiniteScroll [scrollWindow]="false" (scrolled)="onScroll()">
-  <a routerLink="/pokemon/{{pokemon.id}}" *ngFor="let pokemon of pokemons">
+
+  <mat-form-field class="example-full-width">
+    <input matInput
+           placeholder="Rechercher un pokémon"
+           [(ngModel)]="searchKeyWord"
+           (ngModelChange)="inputSearchChanges()"
+    >
+  </mat-form-field>
+
+
+  <a routerLink="/pokemon/{{pokemon.id}}" *ngFor="let pokemon of displayed">
     <mat-list-item>
       <img matListAvatar [src]="getSpriteUrl(pokemon.id)" alt="">
       <h3 matLine> {{pokemon.name}} </h3>
     </mat-list-item>
   </a>
+
+
 </mat-list>
