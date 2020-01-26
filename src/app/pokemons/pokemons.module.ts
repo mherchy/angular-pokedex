@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonsDetailComponent } from './pokemons-detail/pokemons-detail.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {HttpClientModule, HttpRequest} from '@angular/common/http';
 import {
   MatListModule,
@@ -29,7 +30,8 @@ import {
     MatGridListModule,
     MatChipsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    InfiniteScrollModule
   ]
 })
 export class PokemonsModule { }

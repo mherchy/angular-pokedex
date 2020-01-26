@@ -1,4 +1,4 @@
-<mat-list class="pokemon-list">
+<mat-list class="pokemon-list" infiniteScroll (scrolled)="onScroll()">
   <a routerLink="/pokemon/{{pokemon.id}}" *ngFor="let pokemon of pokemons">
     <mat-list-item>
       <img matListAvatar [src]="getSpriteUrl(pokemon.id)" alt="">
