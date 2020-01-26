@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PokemonServiceService} from '../pokemon-service.service';
 import {PokemonListItem} from '../models/pokemon-list';
+import {IInfiniteScrollEvent} from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -9,22 +10,35 @@ import {PokemonListItem} from '../models/pokemon-list';
 })
 export class PokemonListComponent implements OnInit {
 
-  public pokemons: PokemonListItem[];
+  public pokemons: PokemonListItem[] = [];
+  private nbPerRequest = 10;
+  private nbItems = 0;
+  private scrollAvailable = true;
 
   constructor(
     private pokemonService: PokemonServiceService
   ) { }
 
   ngOnInit() {
-    this.getPokemonList();
+    this.getNextPokemons();
   }
 
-  getPokemonList() {
-    this.pokemonService.getPokemons().subscribe(o => this.pokemons = o.data);
+  getNextPokemons() {
+    this.pokemonService.getPokemons(this.nbItems, this.nbPerRequest).subscribe(o => {
+      this.pokemons = this.pokemons.concat(o.data);
+      this.nbItems += this.nbPerRequest;
+    });
   }
 
   getSpriteUrl(id: number) {
     return 'assets/img/sprites/' + id + '.png';
   }
 
+  onScroll() {
+    if (this.scrollAvailable) {
+      this.scrollAvailable = false;
+      this.getNextPokemons();
+      this.scrollAvailable = true;
+    }
+  }
 }
