@@ -25,17 +25,20 @@ export class PokemonListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getNextPokemons();
+    this.getNextPokemons(15);
   }
 
   displayCache() {
     this.displayed = this.cache;
   }
 
-  getNextPokemons() {
-    this.pokemonService.getPokemons(this.nbItems, this.nbPerRequest).subscribe(o => {
+  getNextPokemons(n?: number) {
+    if (!n) {
+      n = this.nbPerRequest;
+    }
+    this.pokemonService.getPokemons(this.nbItems, n).subscribe(o => {
       this.cache = this.cache.concat(o.data);
-      this.nbItems += this.nbPerRequest;
+      this.nbItems += o.data.length;
       this.displayCache();
     });
   }
