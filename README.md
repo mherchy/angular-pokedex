@@ -1,4 +1,6 @@
-# Pokedex
+# Pokedex -  Matthieu HERCHY - LA1
+
+_Les différents TPs sont séparés par branche._
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 
